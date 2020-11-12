@@ -4,7 +4,6 @@
   },
   "navigationBarTitleText": "UI组件库",
   "pages": [
-    // 第一项 内容必须在 tabBar中list数组中的内容
     "pages/home/home",
     "pages/product/product",
     "pages/category/category",
@@ -20,7 +19,6 @@
   "tabBar": {
     "list": [
       {
-        // 对应pages的第一项内容
         "pagePath": "pages/home/home",
         "text": "首页",
         "iconPath": "imgs/toolbar/home.png",

@@ -1,19 +1,19 @@
 <!--pages/course/course.wxml-->
 <text>这里是课表信息</text>
-<scroll-view scroll-x="true" class='scrollClass'>
+<scroll-view scroll-x="true" class='scrollClass' enable-flex="true">
   <view class='table'>
     <view class='table_header'>
       <view class="th" style='width:130rpx;background-color:white'>
-        <view class='centerclass cell_label'>排班</view>
+        <view class='centerclass cell_label'>课表</view>
       </view>
-      <block wx:for="{{dateArray}}">
+      <block wx:for="{{dateArray}}" wx:key="dateArray">
         <view class='th'>
           <view class="cell_label centerclass">{{item.weekName}}</view>
           <view class="cell_date_label centerclass">{{item.date_text}}</view>
         </view>
       </block>
     </view>
-    <block wx:for="{{sch_listData}}">
+    <block wx:for="{{sch_listData}}" wx:key="sch_listData">
       <view class='table_main'>
         <!--上午下午晚上  -->
         <view class='td' style='width:130rpx;background-color:white;'>
@@ -22,58 +22,71 @@
 
         <!-- 周一 -->
         <view class='td'>
-          <block wx:for="{{item.Mon_text}}" wx:for-item="trade" wx:for-index="ind">
-            <view class='{{item.Mon_text.length-1==ind? "table_Text_last_class":"table_Text_class"}}' bindtap='clickDoctor'  data-docname='{{trade.docName}}' data-timeperiod='{{trade.timePeriod}}'
+          <block wx:for="{{item.Mon_text}}" wx:key="item.Mon_text" wx:for-item="trade" wx:for-index="ind">
+            <view class='{{item.Mon_text.length-1==ind? "table_Text_last_class":"table_Text_class"}}' bindtap='clickCourse'  data-docname='{{trade.docName}}' data-timeperiod='{{trade.timePeriod}}'
               data-dayOfWeek='{{trade.dayOfWeek}}'>{{trade.docName}}</view>
           </block>
         </view>
 
         <!--周二  -->
         <view class='td'>
-          <block wx:for="{{item.Tues_text}}" wx:for-item="trade" wx:for-index="ind">
-            <view class='{{item.Tues_text.length-1==ind? "table_Text_last_class":"table_Text_class"}}' bindtap='clickDoctor'  data-docname='{{trade.docName}}' data-timeperiod='{{trade.timePeriod}}'
+          <block wx:for="{{item.Tues_text}}" wx:key="item.Tues_text" wx:for-item="trade" wx:for-index="ind">
+            <view class='{{item.Tues_text.length-1==ind? "table_Text_last_class":"table_Text_class"}}' bindtap='clickCourse'  data-docname='{{trade.docName}}' data-timeperiod='{{trade.timePeriod}}'
               data-dayOfWeek='{{trade.dayOfWeek}}'>{{trade.docName}}</view>
           </block>
         </view>
         <!--周三  -->
         <view class='td'>
-          <block wx:for="{{item.Wed_text}}" wx:for-item="trade" wx:for-index="ind">
-            <view class='{{item.Wed_text.length-1==ind? "table_Text_last_class":"table_Text_class"}}' bindtap='clickDoctor'  data-docname='{{trade.docName}}' data-timeperiod='{{trade.timePeriod}}'
+          <block wx:for="{{item.Wed_text}}" wx:key="item.Wed_text" wx:for-item="trade" wx:for-index="ind">
+            <view class='{{item.Wed_text.length-1==ind? "table_Text_last_class":"table_Text_class"}}' bindtap='clickCourse'  data-docname='{{trade.docName}}' data-timeperiod='{{trade.timePeriod}}'
               data-dayOfWeek='{{trade.dayOfWeek}}'>{{trade.docName}}</view>
 
           </block>
         </view>
         <!--周四  -->
         <view class='td'>
-          <block wx:for="{{item.Thur_text}}" wx:for-item="trade" wx:for-index="ind">
-            <view class='{{item.Thur_text.length-1==ind? "table_Text_last_class":"table_Text_class"}}' bindtap='clickDoctor'  data-docname='{{trade.docName}}' data-timeperiod='{{trade.timePeriod}}'
+          <block wx:for="{{item.Thur_text}}" wx:key="item.Thur_text" wx:for-item="trade" wx:for-index="ind">
+            <view class='{{item.Thur_text.length-1==ind? "table_Text_last_class":"table_Text_class"}}' bindtap='clickCourse'  data-docname='{{trade.docName}}' data-timeperiod='{{trade.timePeriod}}'
               data-dayOfWeek='{{trade.dayOfWeek}}'>{{trade.docName}}</view>
           </block>
         </view>
         <!--周五  -->
         <view class='td'>
-          <block wx:for="{{item.Fri_text}}" wx:for-item="trade" wx:for-index="ind">
-            <view class='{{item.Fri_text.length-1==ind? "table_Text_last_class":"table_Text_class"}}' bindtap='clickDoctor'  data-docname='{{trade.docName}}' data-timeperiod='{{trade.timePeriod}}'
+          <block wx:for="{{item.Fri_text}}" wx:key="item.Fri_text" wx:for-item="trade" wx:for-index="ind">
+            <view class='{{item.Fri_text.length-1==ind? "table_Text_last_class":"table_Text_class"}}' bindtap='clickCourse'  data-docname='{{trade.docName}}' data-timeperiod='{{trade.timePeriod}}'
               data-dayOfWeek='{{trade.dayOfWeek}}'>{{trade.docName}}</view>
           </block>
         </view>
         <!--周六  -->
         <view class='td'>
-          <block wx:for="{{item.Sat_text}}" wx:for-item="trade" wx:for-index="ind">
-            <view class='{{item.Sat_text.length-1==ind? "table_Text_last_class":"table_Text_class"}}' bindtap='clickDoctor'  data-docname='{{trade.docName}}' data-timeperiod='{{trade.timePeriod}}'
+          <block wx:for="{{item.Sat_text}}" wx:key="item.Sat_text" wx:for-item="trade" wx:for-index="ind">
+            <view class='{{item.Sat_text.length-1==ind? "table_Text_last_class":"table_Text_class"}}' bindtap='clickCourse'  data-docname='{{trade.docName}}' data-timeperiod='{{trade.timePeriod}}'
               data-dayOfWeek='{{trade.dayOfWeek}}'>{{trade.docName}}</view>
           </block>
         </view>
         <!-- 周日 -->
         <view class='td'>
-          <block wx:for="{{item.Sun_text}}" wx:for-item="trade" wx:for-index="ind">
-            <view class='{{item.Sun_text.length-1==ind? "table_Text_last_class":"table_Text_class"}}' bindtap='clickDoctor'  data-docname='{{trade.docName}}' data-timeperiod='{{trade.timePeriod}}'
+          <block wx:for="{{item.Sun_text}}" wx:key="item.Sun_text" wx:for-item="trade" wx:for-index="ind">
+            <view class='{{item.Sun_text.length-1==ind? "table_Text_last_class":"table_Text_class"}}' bindtap='clickCourse'  data-docname='{{trade.docName}}' data-timeperiod='{{trade.timePeriod}}'
               data-dayOfWeek='{{trade.dayOfWeek}}'>{{trade.docName}}</view>
           </block>
         </view>
-
-
       </view>
     </block>
   </view>
 </scroll-view>
+<modal wx:if='{{show}}' title="课程信息" confirm-text="提交" cancel-text="取消" bindcancel="cancelCourseInfo" bindconfirm="confirmCourseInfo">
+  <view class="formHeadClass">课程信息</view>
+  <view class="formCourse">
+    <view class="courseName">课程名称：</view>
+  </view>
+  <view class="formTeacher">
+    <view class="teacherName">教师名称：</view>
+  </view>
+  <view class="formClassroom">
+    <view class="classroomLoca">教室信息：</view>
+  </view>
+  <view class="formTime">
+    <view class="classTime">上课时间：</view>
+  </view>
+</modal>

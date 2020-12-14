@@ -1,7 +1,7 @@
 // pages/course/course.js
 var weeksArray = [];
 var GetDepartment_info = function (that) {
-var urlStr = 'http://123.56.180.48:9080/jklApi/rest/' + 'goldDepartment/getHomePageData/' + '8a819ee651431b2701514386fa050008';
+var urlStr = '';
     console.log('科室详情的url：' + urlStr);
 
     wx.request({
@@ -37,6 +37,7 @@ Page({
      * 页面的初始数据
      */
     data: {
+      show: false,
       sch_listData: [],
       dateArray: [],
     },
@@ -444,44 +445,20 @@ onReachBottom: function () {
 onShareAppMessage: function () {
 
 },
-
-clickDoctor: function (e) {
-  var $dict = e.currentTarget.dataset;
-
-  var tag = $dict.dayofweek;//周几
-  var appdate = '';
-  for (var k = 0; k < weeksArray.length; k++) {
-    if (weeksArray[k].weekNum == tag - 1) {
-      appdate = weeksArray[k].date_text;
-    }
-  }
-  var dd = new Date();
-  appdate = dd.getFullYear() + '/' + appdate;
-
-
-  var str = '';
-  var timeStr = $dict.timeperiod;
-  if (timeStr == "A") {
-    timeStr = '上午';
-  } else if (timeStr == "B") {
-    timeStr = '下午';
-  } else {
-    timeStr = '晚上';
-  }
-
-
-  str = appdate + ' ' + timeStr + ' ' + $dict.docname;
-  wx.showModal({
-    title: '提示',
-    content: str,
-    success: function (res) {
-      if (res.confirm) {
-        console.log('用户点击确定')
-      }
-    }
-  })
+/**点击课程弹出框——取消 */
+cancelCourseInfo: function(e){
+  this.setData({show:false})
 },
-
+/**点击课程弹出框——确定按钮*/
+confirmCourseInfo: function(e){
+  this.setData({show:false})
+},
+/**
+ * 点击课程，展示课程详情
+ */
+clickCourse: function (e) {
+  this.setData({ show: true })
+},
 })
 
 

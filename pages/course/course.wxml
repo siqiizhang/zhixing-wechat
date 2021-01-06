@@ -1,5 +1,4 @@
 <!--pages/course/course.wxml-->
-<text>这里是课表信息</text>
 <scroll-view scroll-x="true" class='scrollClass' enable-flex="true">
   <view class='table'>
     <view class='table_header'>

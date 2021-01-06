@@ -1,26 +1,20 @@
 // pages/course/course.js
 var weeksArray = [];
-var GetDepartment_info = function (that) {
-var urlStr = '';
-    console.log('科室详情的url：' + urlStr);
-
+var GetCourseInfo = function (that) {
+  var url = "http://localhost:9012/service-agency/CourseInfoController/queryCourseInfo"
     wx.request({
-      url: urlStr,
-      method: "GET",
+      url: url,
+      method: "POST",
       header: {
         'content-type': 'application/x-www-form-urlencoded',
         'mhealthkey': '1'
       },
       success: function (res) {
-        console.log("科室详情：" + JSON.stringify(res));
-
+        console.log("本周课程信息" + JSON.stringify(res));
         var sList = res.data.data.scheduleInfo;
         var sch_listData = dealData(sList);
-
         that.setData({
-
           sch_listData: sch_listData,
-
         });
       },
       fail: function (e) {
@@ -49,336 +43,17 @@ Page({
     var scheduleList = [
       {
         "scheduleId": "8aaf510c5e3de339015e3de932660000",
-        "resourceName": "专科门诊",
         "dayOfWeek": "1",
-        "timePeriod": "A",
-        "docName": "医生C",
-        "doctorId": "8a2256334b021c33014b06124fd60181",
-        "ifOpenYuYueService": "0"
+        "timePeriod": "0",
+        "docName": "民族舞",
+        "doctorId": "8a2256334b021c33014b06124fd60181"
       },
       {
         "scheduleId": "8aaf510c60c6700b0160de3031f40598",
-        "resourceName": "普通门诊",
         "dayOfWeek": "1",
-        "timePeriod": "A",
-        "docName": "测试李医生",
-        "doctorId": "8a2256334c265f88014c26d521fc0103",
-        "ifOpenYuYueService": "0"
-      },
-      {
-        "scheduleId": "ff80808162a3453f0162a3f036440000",
-        "resourceName": "普通门诊",
-        "dayOfWeek": "1",
-        "timePeriod": "A",
-        "docName": "赵医生",
-        "doctorId": "8aaf510c53f56ee0015432b3ee760e22",
-        "ifOpenYuYueService": "0"
-      },
-      {
-        "scheduleId": "ff8080815e36ffb0015e375d3d850006",
-        "resourceName": "专家门诊",
-        "dayOfWeek": "1",
-        "timePeriod": "B",
-        "docName": "测试李医生",
-        "doctorId": "8a2256334c265f88014c26d521fc0103",
-        "ifOpenYuYueService": "0"
-      },
-      {
-        "scheduleId": "8aaf510c5e0ddfd6015e2d4e85290288",
-        "resourceName": "特需门诊",
-        "dayOfWeek": "1",
-        "timePeriod": "B",
-        "docName": "医生A",
-        "doctorId": "8a2256334888ffb301488b90a3fe005f",
-        "ifOpenYuYueService": "0"
-      },
-      {
-        "scheduleId": "02f18a9c0a374b4184f35b40a9dde3f0",
-        "resourceName": "专家门诊",
-        "dayOfWeek": "1",
-        "timePeriod": "B",
-        "docName": "医生C",
-        "doctorId": "8a2256334b021c33014b06124fd60181",
-        "ifOpenYuYueService": "0"
-      },
-      {
-        "scheduleId": "ff80808160ea422a0160ea4f6fb10001",
-        "resourceName": "普通门诊",
-        "dayOfWeek": "1",
-        "timePeriod": "C",
-        "docName": "测试李医生",
-        "doctorId": "8a2256334c265f88014c26d521fc0103",
-        "ifOpenYuYueService": "0"
-      },
-      {
-        "scheduleId": "ff80808160e90a3e0160e93c9f6e001e",
-        "resourceName": "普通门诊",
-        "dayOfWeek": "1",
-        "timePeriod": "C",
-        "docName": "医生C",
-        "doctorId": "8a2256334b021c33014b06124fd60181",
-        "ifOpenYuYueService": "0"
-      },
-      {
-        "scheduleId": "e34f2c6fbb134e408d67ee212b66173d",
-        "resourceName": "专科门诊",
-        "dayOfWeek": "2",
-        "timePeriod": "A",
-        "docName": "测试李医生",
-        "doctorId": "8a2256334c265f88014c26d521fc0103",
-        "ifOpenYuYueService": "0"
-      },
-      {
-        "scheduleId": "72dd38ee6dad423884ba5075ca067365",
-        "resourceName": "其他门诊",
-        "dayOfWeek": "2",
-        "timePeriod": "A",
-        "docName": "医生C",
-        "doctorId": "8a2256334b021c33014b06124fd60181",
-        "ifOpenYuYueService": "0"
-      },
-      {
-        "scheduleId": "ff8080815e3c5c70015e3dc12bd20002",
-        "resourceName": "普通门诊",
-        "dayOfWeek": "2",
-        "timePeriod": "B",
-        "docName": "医生C",
-        "doctorId": "8a2256334b021c33014b06124fd60181",
-        "ifOpenYuYueService": "0"
-      },
-      {
-        "scheduleId": "ff8080815de9c956015dea16c0fd004e",
-        "resourceName": "特需门诊",
-        "dayOfWeek": "2",
-        "timePeriod": "B",
-        "docName": "医生A",
-        "doctorId": "8a2256334888ffb301488b90a3fe005f",
-        "ifOpenYuYueService": "0"
-      },
-      {
-        "scheduleId": "8aaf510c6290b5390162913c56de00fc",
-        "resourceName": "普通门诊",
-        "dayOfWeek": "2",
-        "timePeriod": "C",
-        "docName": "测试李医生",
-        "doctorId": "8a2256334c265f88014c26d521fc0103",
-        "ifOpenYuYueService": "0"
-      },
-      {
-        "scheduleId": "ff8080816121c47e0161224a13d20006",
-        "resourceName": "普通门诊",
-        "dayOfWeek": "2",
-        "timePeriod": "C",
-        "docName": "医生C",
-        "doctorId": "8a2256334b021c33014b06124fd60181",
-        "ifOpenYuYueService": "0"
-      },
-      {
-        "scheduleId": "0ab98c9b1c874162b7b0c3797ff74759",
-        "resourceName": "特需门诊",
-        "dayOfWeek": "3",
-        "timePeriod": "A",
-        "docName": "医生C",
-        "doctorId": "8a2256334b021c33014b06124fd60181",
-        "ifOpenYuYueService": "0"
-      },
-      {
-        "scheduleId": "402881b05de9c5c4015dea11d62d000d",
-        "resourceName": "普通门诊",
-        "dayOfWeek": "3",
-        "timePeriod": "A",
-        "docName": "测试李医生",
-        "doctorId": "8a2256334c265f88014c26d521fc0103",
-        "ifOpenYuYueService": "0"
-      },
-      {
-        "scheduleId": "ff8080815e3782fc015e37a3b23e0006",
-        "resourceName": "普通门诊",
-        "dayOfWeek": "3",
-        "timePeriod": "B",
-        "docName": "测试李医生",
-        "doctorId": "8a2256334c265f88014c26d521fc0103",
-        "ifOpenYuYueService": "0"
-      },
-      {
-        "scheduleId": "5d253a9c81004bc4827cc06c4ff55182",
-        "resourceName": "普通门诊",
-        "dayOfWeek": "3",
-        "timePeriod": "B",
-        "docName": "医生C",
-        "doctorId": "8a2256334b021c33014b06124fd60181",
-        "ifOpenYuYueService": "0"
-      },
-      {
-        "scheduleId": "8aaf510c62745ce401627479421d0001",
-        "resourceName": "特需门诊",
-        "dayOfWeek": "3",
-        "timePeriod": "C",
-        "docName": "医生C",
-        "doctorId": "8a2256334b021c33014b06124fd60181",
-        "ifOpenYuYueService": "0"
-      },
-      {
-        "scheduleId": "ad566119a9804d63885b3f6e7f52b1eb",
-        "resourceName": "专家门诊",
-        "dayOfWeek": "4",
-        "timePeriod": "A",
-        "docName": "医生C",
-        "doctorId": "8a2256334b021c33014b06124fd60181",
-        "ifOpenYuYueService": "0"
-      },
-      {
-        "scheduleId": "b79212dbeed74df380e0436f24af2a29",
-        "resourceName": "其他门诊",
-        "dayOfWeek": "4",
-        "timePeriod": "A",
-        "docName": "测试李医生",
-        "doctorId": "8a2256334c265f88014c26d521fc0103",
-        "ifOpenYuYueService": "0"
-      },
-      {
-        "scheduleId": "81d4a516809140f08d9ce2fc3cc37836",
-        "resourceName": "特需门诊",
-        "dayOfWeek": "4",
-        "timePeriod": "B",
-        "docName": "医生C",
-        "doctorId": "8a2256334b021c33014b06124fd60181",
-        "ifOpenYuYueService": "0"
-      },
-      {
-        "scheduleId": "6c6cdaf06adc4f9f9e32446daa84d143",
-        "resourceName": "特需门诊",
-        "dayOfWeek": "4",
-        "timePeriod": "B",
-        "docName": "测试李医生",
-        "doctorId": "8a2256334c265f88014c26d521fc0103",
-        "ifOpenYuYueService": "0"
-      },
-      {
-        "scheduleId": "8aaf510c5dfab03a015e08caafa8004f",
-        "resourceName": "特需门诊",
-        "dayOfWeek": "5",
-        "timePeriod": "A",
-        "docName": "医生A",
-        "doctorId": "8a2256334888ffb301488b90a3fe005f",
-        "ifOpenYuYueService": "0"
-      },
-      {
-        "scheduleId": "47f8bbc4be8c4e21af23cb89c74ad796",
-        "resourceName": "专科门诊",
-        "dayOfWeek": "5",
-        "timePeriod": "A",
-        "docName": "医生C",
-        "doctorId": "8a2256334b021c33014b06124fd60181",
-        "ifOpenYuYueService": "0"
-      },
-      {
-        "scheduleId": "8aaf510c5e3370ed015e33d3d8810033",
-        "resourceName": "专家门诊",
-        "dayOfWeek": "5",
-        "timePeriod": "A",
-        "docName": "测试李医生",
-        "doctorId": "8a2256334c265f88014c26d521fc0103",
-        "ifOpenYuYueService": "0"
-      },
-      {
-        "scheduleId": "8aaf510c5dfab03a015e08cadcd10054",
-        "resourceName": "特需门诊",
-        "dayOfWeek": "5",
-        "timePeriod": "B",
-        "docName": "医生A",
-        "doctorId": "8a2256334888ffb301488b90a3fe005f",
-        "ifOpenYuYueService": "0"
-      },
-      {
-        "scheduleId": "6f2e45a9d60c479eadfe4406ff7ac8b0",
-        "resourceName": "会诊中心",
-        "dayOfWeek": "5",
-        "timePeriod": "B",
-        "docName": "测试李医生",
-        "doctorId": "8a2256334c265f88014c26d521fc0103",
-        "ifOpenYuYueService": "0"
-      },
-      {
-        "scheduleId": "8aaf510c5eae93dc015eb78056a60001",
-        "resourceName": "普通门诊",
-        "dayOfWeek": "5",
-        "timePeriod": "B",
-        "docName": "医生C",
-        "doctorId": "8a2256334b021c33014b06124fd60181",
-        "ifOpenYuYueService": "0"
-      },
-      {
-        "scheduleId": "9ee899faebbc4cf68139aca8631b7892",
-        "resourceName": "夜间会诊",
-        "dayOfWeek": "5",
-        "timePeriod": "C",
-        "docName": "测试李医生",
-        "doctorId": "8a2256334c265f88014c26d521fc0103",
-        "ifOpenYuYueService": "0"
-      },
-      {
-        "scheduleId": "8aaf510c5ebe5987015ec1e393840158",
-        "resourceName": "普通门诊",
-        "dayOfWeek": "6",
-        "timePeriod": "A",
-        "docName": "医生C",
-        "doctorId": "8a2256334b021c33014b06124fd60181",
-        "ifOpenYuYueService": "0"
-      },
-      {
-        "scheduleId": "8f8522911a484a0d9ca14ab109957fef",
-        "resourceName": "普通门诊",
-        "dayOfWeek": "6",
-        "timePeriod": "A",
-        "docName": "测试李医生",
-        "doctorId": "8a2256334c265f88014c26d521fc0103",
-        "ifOpenYuYueService": "0"
-      },
-      {
-        "scheduleId": "fbc1c442ca3f11e4b00300163e004c9f",
-        "resourceName": "特需门诊",
-        "dayOfWeek": "6",
-        "timePeriod": "A",
-        "docName": "医生A",
-        "doctorId": "8a2256334888ffb301488b90a3fe005f",
-        "ifOpenYuYueService": "0"
-      },
-      {
-        "scheduleId": "8aaf510c6253714201626153a8fb074a",
-        "resourceName": "预约挂号",
-        "dayOfWeek": "6",
-        "timePeriod": "B",
-        "docName": "测试李医生",
-        "doctorId": "8a2256334c265f88014c26d521fc0103",
-        "ifOpenYuYueService": "0"
-      },
-      {
-        "scheduleId": "f777b64a9b224520920c34de26662934",
-        "resourceName": "其他门诊",
-        "dayOfWeek": "6",
-        "timePeriod": "B",
-        "docName": "医生A",
-        "doctorId": "8a2256334888ffb301488b90a3fe005f",
-        "ifOpenYuYueService": "0"
-      },
-      {
-        "scheduleId": "8aaf510c5e0a27d6015e0a3043920009",
-        "resourceName": "特需门诊",
-        "dayOfWeek": "6",
-        "timePeriod": "C",
-        "docName": "医生A",
-        "doctorId": "8a2256334888ffb301488b90a3fe005f",
-        "ifOpenYuYueService": "0"
-      },
-      {
-        "scheduleId": "699b23a064b0462890343c3f3fd2749b",
-        "resourceName": "专科门诊",
-        "dayOfWeek": "7",
-        "timePeriod": "B",
-        "docName": "医生A",
-        "doctorId": "8a2256334888ffb301488b90a3fe005f",
-        "ifOpenYuYueService": "0"
+        "timePeriod": "0",
+        "docName": "拉丁舞",
+        "doctorId": "8a2256334c265f88014c26d521fc0103"
       }
     ];
 
@@ -407,8 +82,8 @@ onReady: function () {
  * 生命周期函数--监听页面显示
  */
 onShow: function () {
-  // var that = this;
-  // GetDepartment_info(that);
+  var that = this;
+  GetCourseInfo(that);
 },
 
 /**
@@ -460,8 +135,6 @@ clickCourse: function (e) {
   this.setData({ show: true })
 },
 })
-
-
 
 
 var getSevenDays = function () {
@@ -540,8 +213,7 @@ var dealData = function (scheduleInfoList) {
   var C_Sun_text_ar = [];
 
   for (var i = 0; i < scheduleInfoList.length; i++) {
-    // console.log(scheduleInfoList[i].scheduleId + "222222");
-    if (scheduleInfoList[i].timePeriod == 'A') {
+    if (scheduleInfoList[i].timePeriod == '0') {
       if (scheduleInfoList[i].dayOfWeek == ar[tag]) {
         A_Mon_text_ar = A_Mon_text_ar.concat(scheduleInfoList[i]);
       } else if (scheduleInfoList[i].dayOfWeek == ar[tag + 1]) {
@@ -558,7 +230,7 @@ var dealData = function (scheduleInfoList) {
         A_Sun_text_ar = A_Sun_text_ar.concat(scheduleInfoList[i]);
       }
     }
-    else if (scheduleInfoList[i].timePeriod == 'B') {
+    else if (scheduleInfoList[i].timePeriod == '1') {
       if (scheduleInfoList[i].dayOfWeek == ar[tag]) {
         B_Mon_text_ar = B_Mon_text_ar.concat(scheduleInfoList[i]);
       } else if (scheduleInfoList[i].dayOfWeek == ar[tag + 1]) {

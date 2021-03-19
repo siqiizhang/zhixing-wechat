@@ -1,20 +1,21 @@
 // pages/course/course.js
 var weeksArray = [];
 var GetCourseInfo = function (that) {
-  var url = "http://localhost:9012/service-agency/CourseInfoController/queryCourseInfo"
     wx.request({
-      url: url,
-      method: "POST",
+      url: 'http://localhost:6001/zhixing/CourseInfoController/queryCourseInfo',
+      method: 'POST',
       header: {
-        'content-type': 'application/x-www-form-urlencoded',
-        'mhealthkey': '1'
+        'content-type': 'application/json;charset=UTF-8'
+      },
+      data: {
+        aaaa:'1111',
       },
       success: function (res) {
         console.log("本周课程信息" + JSON.stringify(res));
-        var sList = res.data.data.scheduleInfo;
+        var sList = res.data.result;
         var sch_listData = dealData(sList);
         that.setData({
-          sch_listData: sch_listData,
+          sch_listData: sch_listData, 
         });
       },
       fail: function (e) {
@@ -34,6 +35,7 @@ Page({
       show: false,
       sch_listData: [],
       dateArray: [],
+      courseInfoDetail:{},
     },
 
     /**
@@ -42,25 +44,18 @@ Page({
     onLoad: function (options) {
     var scheduleList = [
       {
-        "scheduleId": "8aaf510c5e3de339015e3de932660000",
+        "courseID": "课程ID",
         "dayOfWeek": "1",
         "timePeriod": "0",
-        "docName": "民族舞",
-        "doctorId": "8a2256334b021c33014b06124fd60181"
+        "courseName": "民族舞"
       },
       {
-        "scheduleId": "8aaf510c60c6700b0160de3031f40598",
+        "courseID": "8aaf510c60c6700b0160de3031f40598",
         "dayOfWeek": "1",
         "timePeriod": "0",
-        "docName": "拉丁舞",
-        "doctorId": "8a2256334c265f88014c26d521fc0103"
+        "courseName": "拉丁舞"
       }
     ];
-
-    for(var j = 0; j<scheduleList.length; j++) {
-  console.log('----' + scheduleList[j].docName);
-}
-
 var daysArray = getSevenDays();
 var sch_listData = dealData(scheduleList);
 
@@ -132,7 +127,31 @@ confirmCourseInfo: function(e){
  * 点击课程，展示课程详情
  */
 clickCourse: function (e) {
-  this.setData({ show: true })
+  var that=this;
+  wx.request({
+    url: 'http://localhost:6001/zhixing/CourseInfoController/queryCourseDetail',
+    method: 'POST',
+    header: {
+      'content-type': 'application/json;charset=UTF-8'
+    },
+    data: {
+      aaaa:'1111',
+    },
+    success: function (res) {
+      console.log("选中课程详细信息" + JSON.stringify(res));
+      var courseInfoDetail = res.data.result;
+      that.setData({
+        courseInfoDetail: courseInfoDetail, 
+        show: true,
+      });
+    },
+    fail: function (e) {
+      that.setData({
+        show: false,
+        loadingHidden: true,
+      })
+    }
+  })
 },
 })
 

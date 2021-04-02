@@ -1,0 +1,18 @@
+.faceArea{
+  margin-left: 10px;
+
+}
+.myInfoDetail{
+  margin-bottom: 10px;
+}
+.arrow{
+  width: 10px;
+  height: 10px;
+  border-top: 1px solid #999;
+  border-right: 1px solid #999;
+  transform: rotate(45deg);
+  align-items: center;
+}
+.myInfoDetailView{
+  display: flex;
+}

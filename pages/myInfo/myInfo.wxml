@@ -1,0 +1,20 @@
+<view class='faceArea'>
+    <view class='profilePhoto'>头像</view>
+</view>
+<view class="container">
+  <view class='myInfo'>
+    <view class="myInfoDetailView">
+      <view class='myInfoDetail'>班级信息</view>
+      <view class="arrow"></view>
+    </view>
+    <view class='myInfoDetail'></view>
+  </view>
+  <view class='myInfo'>
+    <view class='myInfoDetail'>课程信息</view>
+    <view class='myInfoDetail'></view>
+  </view>
+  <view class='myInfo'>
+    <view class='myInfoDetail'>校区信息</view>
+    <view class='myInfoDetail'></view>
+  </view>
+</view>

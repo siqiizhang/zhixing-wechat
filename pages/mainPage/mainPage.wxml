@@ -2,8 +2,13 @@
     <view class="page__hd">
         <view class="page__desc">今日课程</view>
     </view>
-    <form bindsubmit="todaySubmit">
-        <custom-comp>哈哈</custom-comp>
-    </form>
+    <view bindsubmit="todaySubmit" class="todayClassCss">
+        <block wx:for="{{todayClassArray}}" wx:key="todayClassArray">
+            <view class="timeClassView">
+                <custom-comp class="classTimeView">{{item.classTime}}：</custom-comp>
+                <custom-comp>{{item.courseName}}</custom-comp>
+            </view>
+        </block>
+    </view>
     <mp-tabbar style="position:fixed;bottom:0;width:100%;left:0;right:0;" bindchange="tabChange"></mp-tabbar>
 </view>

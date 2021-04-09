@@ -1,14 +1,25 @@
 <view class="page">
-    <view class="page__hd">
-        <view class="page__desc">今日课程</view>
+    <view class="weekCourse">
+        <view class="weekCourseImageView">
+            <image class="weekCourseImage" src="./images/weekCourseImage.png"></image>
+            <image class="weekCourseImageTwo" src="./images/weekCourseImage.png"></image>
+            <image class="weekCourseImageThree" src="./images/weekCourseImage.png"></image>
+        </view>
+        <view class="weekCourseLocation" bindtap="weekCourseBind">本周课程</view>
     </view>
-    <view bindsubmit="todaySubmit" class="todayClassCss">
-        <block wx:for="{{todayClassArray}}" wx:key="todayClassArray">
-            <view class="timeClassView">
-                <custom-comp class="classTimeView">{{item.classTime}}：</custom-comp>
-                <custom-comp>{{item.courseName}}</custom-comp>
-            </view>
-        </block>
+    <view class="classCourseView">
+        <view bindsubmit="todaySubmit" class="todayClassCss">
+            <block wx:for="{{todayClassArray}}" wx:key="todayClassArray">
+                <view class="timeClassView">
+                    <custom-comp class="classTimeView">{{item.classTime}}：</custom-comp>
+                    <custom-comp class="classCourseName">{{item.courseName}}</custom-comp>
+                    <image class="classCourseImage" src="./images/classCourseImage.png"></image>
+                </view>
+            </block>
+        </view>
+        <view>
+            <view class="userName"></view>
+        </view>
     </view>
-    <mp-tabbar style="position:fixed;bottom:0;width:100%;left:0;right:0;" bindchange="tabChange"></mp-tabbar>
+    <mp-tabbar class="tabClass" bindchange="tabChange"></mp-tabbar>
 </view>

@@ -26,24 +26,18 @@ var GetTodayClassInfo = function (that) {
 Page({
   data: {
     todayClassArray: [],
+    userName: '',
+    userPhone: ''
   },
       /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-      var todayClassArray = [
-        {
-          "classTime": "张三",
-          "className": "李四"
-        },
-        {
-          "classTime": "张三",
-          "className": "李四"
-        }
-      ];
-  this.setData({
-    todayClassArray: todayClassArray,
-    });
+      userName = options.userName;
+      userPhone = options.userPhone;
+      this.setData({
+        todayClassArray: todayClassArray,
+        });
     },
     /**
  * 生命周期函数--监听页面初次渲染完成
@@ -60,12 +54,19 @@ onShow: function () {
   GetTodayClassInfo(that);
 },
 
-/**
- * 生命周期函数--监听页面隐藏
- */
-onHide: function () {
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
 
-},
+  },
+  /**本周课程点击事件 */
+  weekCourseBind: function () {
+    var that = this;
+    wx.navigateTo({
+      url: '../course/course?userName=' + that.data.userName + "&userPhone=" + that.data.userPhone,
+    })
+  },
   tabChange(e) {
     console.log('tab change', e)
   }

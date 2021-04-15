@@ -76,37 +76,4 @@
     </view>
   </scroll-view>
 </view>
-<modal wx:if='{{show}}' title="课程信息" confirm-text="提交" cancel-text="取消" bindcancel="cancelCourseInfo" bindconfirm="confirmCourseInfo" class="modalClass">
-  <view class="formBodyClass">
-    <view class="courseName">课程名称：</view>
-    <view class="courseName">{{courseInfoDetail.courseName}}</view>
-  </view>
-  <view class="formBodyClass">
-    <view class="coureseId">课程ID：</view>
-    <view class="coureseId">{{courseInfoDetail.coureseId}}</view>
-  </view>
-  <view class="formBodyClass">
-    <view class="teacherName">教师姓名：</view>
-    <view class="teacherName">{{courseInfoDetail.teacherName}}</view>
-  </view>
-  <view class="formBodyClass">
-    <view class="teacherID">教师ID：</view>
-    <view class="teacherID">{{courseInfoDetail.teacherID}}</view>
-  </view>
-  <view class="formBodyClass">
-    <view class="classTime">上课时间：</view>
-    <view class="classTime">{{courseInfoDetail.classTime}}</view>
-  </view>
-  <view class="formBodyClass">
-    <view class="classroomLoca">教室信息：</view>
-    <view class="classroomLoca">{{courseInfoDetail.classroomLoca}}</view>
-  </view>
-  <view class="formBodyClass">
-    <view class="campus">校区名称：</view>
-    <view class="campus">{{courseInfoDetail.campus}}</view>
-  </view>
-  <view class="formBodyClass">
-    <view class="campusID">校区ID：</view>
-    <view class="campusID">{{courseInfoDetail.campusID}}</view>
-  </view>
-</modal>
+<modal modal-hidden="{{is_modal_Hidden}}" modal-msg="{{courseInfoDetail}}" bind:okEvent="okEvent"></modal>

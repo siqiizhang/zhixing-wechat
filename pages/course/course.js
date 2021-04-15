@@ -36,123 +36,116 @@ Page({
       sch_listData: [],
       dateArray: [],
       courseInfoDetail:{},
+      is_modal_Hidden : false
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-    var scheduleList = [
-      {
-        "courseID": "课程ID",
-        "dayOfWeek": "1",
-        "timePeriod": "0",
-        "courseName": "民族舞"
-      },
-      {
-        "courseID": "8aaf510c60c6700b0160de3031f40598",
-        "dayOfWeek": "1",
-        "timePeriod": "0",
-        "courseName": "拉丁舞"
-      }
-    ];
-var daysArray = getSevenDays();
-var sch_listData = dealData(scheduleList);
-
-
-this.setData({
-  dateArray: daysArray,
-  sch_listData: sch_listData,
-});
+      var scheduleList = [];
+      var daysArray = getSevenDays();
+      var sch_listData = dealData(scheduleList);
+      this.setData({
+        dateArray: daysArray,
+        sch_listData: sch_listData,
+      });
   },
 
-/**
- * 生命周期函数--监听页面初次渲染完成
- */
-onReady: function () {
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
 
-},
+  },
 
-/**
- * 生命周期函数--监听页面显示
- */
-onShow: function () {
-  var that = this;
-  GetCourseInfo(that);
-},
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    var that = this;
+    GetCourseInfo(that);
+  },
 
-/**
- * 生命周期函数--监听页面隐藏
- */
-onHide: function () {
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
 
-},
+  },
 
-/**
- * 生命周期函数--监听页面卸载
- */
-onUnload: function () {
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
 
-},
+  },
 
-/**
- * 页面相关事件处理函数--监听用户下拉动作
- */
-onPullDownRefresh: function () {
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
 
-},
+  },
 
-/**
- * 页面上拉触底事件的处理函数
- */
-onReachBottom: function () {
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
 
-},
+  },
 
-/**
- * 用户点击右上角分享
- */
-onShareAppMessage: function () {
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
 
-},
-/**点击课程弹出框——取消 */
-cancelCourseInfo: function(e){
-  this.setData({show:false})
-},
-/**点击课程弹出框——确定按钮*/
-confirmCourseInfo: function(e){
-  this.setData({show:false})
-},
-/**
- * 点击课程，展示课程详情
- */
-clickCourse: function (e) {
-  var that=this;
-  wx.request({
-    url: 'http://localhost:6001/zhixing/CourseInfoController/queryCourseDetail',
-    method: 'POST',
-    header: {
-      'content-type': 'application/json;charset=UTF-8'
-    },
-    data: {
-      aaaa:'1111',
-    },
-    success: function (res) {
-      console.log("选中课程详细信息" + JSON.stringify(res));
-      var courseInfoDetail = res.data.result;
-      that.setData({
-        courseInfoDetail: courseInfoDetail, 
-        show: true,
-      });
-    },
-    fail: function (e) {
-      that.setData({
-        show: false,
-        loadingHidden: true,
+  },
+    // 接受triggerEvent 方法触发的自定义组件事件来更新同步数据
+    okEvent : function (e) {
+      console.log(e)
+      this.setData({
+        courseInfoDetail: this.data.courseInfoDetail
       })
-    }
-  })
-},
+    },
+  /**点击课程弹出框——取消 */
+  cancelCourseInfo: function(e){
+    this.setData({show:false})
+  },
+  /**点击课程弹出框——确定按钮*/
+  confirmCourseInfo: function(e){
+    this.setData({show:false})
+  },
+  /**
+   * 点击课程，展示课程详情
+   */
+  clickCourse: function (e) {
+    var that=this;
+    wx.request({
+      url: 'http://localhost:6001/zhixing/CourseInfoController/queryCourseDetail',
+      method: 'POST',
+      header: {
+        'content-type': 'application/json;charset=UTF-8'
+      },
+      data: {
+        aaaa:'1111',
+      },
+      success: function (res) {
+        console.log("选中课程详细信息" + JSON.stringify(res));
+        var courseInfoDetails = res.data.result;
+        that.setData({
+          courseInfoDetail: courseInfoDetails, 
+          is_modal_Hidden: false,
+        });
+      },
+      fail: function (e) {
+        that.setData({
+          is_modal_Hidden: true,
+          loadingHidden: true,
+        })
+      }
+    })
+  },
 })
 
 

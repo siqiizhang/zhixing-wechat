@@ -1,4 +1,9 @@
 /* pages/course/course.wxss */
+.modalClass{
+  background-color: red;
+  height: 1000px;
+  width: 100px;
+}
 .formBodyClass{
   display:flex ;
 }

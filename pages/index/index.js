@@ -47,7 +47,7 @@ Page({
       })
     } else {
       wx.request({
-        url: 'http://localhost:6001/zhixing/user/userLogin',
+        url: 'http://192.168.43.232:6001/zhixing/user/userLogin',
         method: 'post',
         data: {
           username: that.data.username,

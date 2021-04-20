@@ -23,22 +23,24 @@
           <!-- 周一 -->
           <view class='td'>
             <block wx:for="{{item.Mon_text}}" wx:key="item.Mon_text" wx:for-item="trade" wx:for-index="ind">
-              <view class='{{item.Mon_text.length-1==ind? "table_Text_last_class":"table_Text_class"}}' bindtap='clickCourse'  data-courseName='{{trade.courseName}}' data-timeperiod='{{trade.timePeriod}}'
-                data-dayOfWeek='{{trade.dayOfWeek}}'>{{trade.courseName}}</view>
+              <view class='table_Text_last_class' bindtap='clickCourse'  data-courseName='{{trade.courseName}}' data-timeperiod='{{trade.timePeriod}}'
+                data-dayOfWeek='{{trade.dayOfWeek}}'>{{trade.courseName}}
+                </view>
+                
             </block>
           </view>
 
           <!--周二  -->
           <view class='td'>
             <block wx:for="{{item.Tues_text}}" wx:key="item.Tues_text" wx:for-item="trade" wx:for-index="ind">
-              <view class='{{item.Tues_text.length-1==ind? "table_Text_last_class":"table_Text_class"}}' bindtap='clickCourse'  data-courseName='{{trade.courseName}}' data-timeperiod='{{trade.timePeriod}}'
+              <view class='table_Text_last_class' bindtap='clickCourse'  data-courseName='{{trade.courseName}}' data-timeperiod='{{trade.timePeriod}}'
                 data-dayOfWeek='{{trade.dayOfWeek}}'>{{trade.courseName}}</view>
             </block>
           </view>
           <!--周三  -->
           <view class='td'>
             <block wx:for="{{item.Wed_text}}" wx:key="item.Wed_text" wx:for-item="trade" wx:for-index="ind">
-              <view class='{{item.Wed_text.length-1==ind? "table_Text_last_class":"table_Text_class"}}' bindtap='clickCourse'  data-courseName='{{trade.courseName}}' data-timeperiod='{{trade.timePeriod}}'
+              <view class='table_Text_last_class' bindtap='clickCourse'  data-courseName='{{trade.courseName}}' data-timeperiod='{{trade.timePeriod}}'
                 data-dayOfWeek='{{trade.dayOfWeek}}'>{{trade.courseName}}</view>
 
             </block>
@@ -46,29 +48,34 @@
           <!--周四  -->
           <view class='td'>
             <block wx:for="{{item.Thur_text}}" wx:key="item.Thur_text" wx:for-item="trade" wx:for-index="ind">
-              <view class='{{item.Thur_text.length-1==ind? "table_Text_last_class":"table_Text_class"}}' bindtap='clickCourse'  data-courseName='{{trade.courseName}}' data-timeperiod='{{trade.timePeriod}}'
+              <view class='table_Text_last_class' bindtap='clickCourse'  data-courseName='{{trade.courseName}}' data-timeperiod='{{trade.timePeriod}}'
                 data-dayOfWeek='{{trade.dayOfWeek}}'>{{trade.courseName}}</view>
             </block>
           </view>
           <!--周五  -->
           <view class='td'>
             <block wx:for="{{item.Fri_text}}" wx:key="item.Fri_text" wx:for-item="trade" wx:for-index="ind">
-              <view class='{{item.Fri_text.length-1==ind? "table_Text_last_class":"table_Text_class"}}' bindtap='clickCourse'  data-courseName='{{trade.courseName}}' data-timeperiod='{{trade.timePeriod}}'
+              <view class='table_Text_last_class' bindtap='clickCourse'  data-courseName='{{trade.courseName}}' data-timeperiod='{{trade.timePeriod}}'
                 data-dayOfWeek='{{trade.dayOfWeek}}'>{{trade.courseName}}</view>
             </block>
           </view>
           <!--周六  -->
           <view class='td'>
             <block wx:for="{{item.Sat_text}}" wx:key="item.Sat_text" wx:for-item="trade" wx:for-index="ind">
-              <view class='{{item.Sat_text.length-1==ind? "table_Text_last_class":"table_Text_class"}}' bindtap='clickCourse'  data-courseName='{{trade.courseName}}' data-timeperiod='{{trade.timePeriod}}'
+              <view class='table_Text_last_class' bindtap='clickCourse'  data-courseName='{{trade.courseName}}' data-timeperiod='{{trade.timePeriod}}'
                 data-dayOfWeek='{{trade.dayOfWeek}}'>{{trade.courseName}}</view>
             </block>
           </view>
           <!-- 周日 -->
           <view class='td'>
             <block wx:for="{{item.Sun_text}}" wx:key="item.Sun_text" wx:for-item="trade" wx:for-index="ind">
-              <view class='{{item.Sun_text.length-1==ind? "table_Text_last_class":"table_Text_class"}}' bindtap='clickCourse'  data-courseName='{{trade.courseName}}' data-timeperiod='{{trade.timePeriod}}'
-                data-dayOfWeek='{{trade.dayOfWeek}}'>{{trade.courseName}}</view>
+              <view class='table_Text_last_class' bindtap='clickCourse' data-courseName='{{trade.courseName}}' 
+              data-timeperiod='{{trade.timePeriod}}' data-dayOfWeek='{{trade.dayOfWeek}}' data-courseId='{{trade.courseId}}' 
+              >{{trade.courseName}}</view>
+                <view class='{{item.Sun_text.length-1==ind? "leaveClassLast":"leaveClass"}}' bindtap='clickLeave'
+                data-courseId='{{trade.courseId}}' data-courseName='{{trade.courseName}}' data-timeperiod='{{trade.timePeriod}}'
+                data-dayOfWeek='{{trade.dayOfWeek}}'
+                >请假</view>
             </block>
           </view>
         </view>

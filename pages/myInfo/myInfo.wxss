@@ -97,3 +97,10 @@
   background: lightgray;
   margin-left: 90rpx;
 }
+.tabClass{
+  position:fixed;
+  bottom:0;
+  width:100%;
+  left:0;
+  right:0;
+}

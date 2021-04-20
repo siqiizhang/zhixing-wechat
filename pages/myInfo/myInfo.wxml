@@ -32,4 +32,5 @@
     <view class="person-line"></view>
   </view>
   <view class="separate"></view>
+  <mp-tabbar class="tabClass" bindchange="tabChange"></mp-tabbar>
 </view>

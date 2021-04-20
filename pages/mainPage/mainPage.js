@@ -3,7 +3,7 @@
 const app = getApp()
 var GetTodayClassInfo = function (that) {
   wx.request({
-    url: 'http://localhost:6001/zhixing/CourseInfoController/queryTodayClassInfo',
+    url: 'http://192.168.43.232:6001/zhixing/CourseInfoController/queryTodayClassInfo',
     method: 'POST',
     header: {
       'content-type': 'application/json;charset=UTF-8'
@@ -67,7 +67,4 @@ onShow: function () {
       url: '../course/course?userName=' + that.data.userName + "&userPhone=" + that.data.userPhone,
     })
   },
-  tabChange(e) {
-    console.log('tab change', e)
-  }
 });

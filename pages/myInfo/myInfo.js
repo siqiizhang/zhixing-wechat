@@ -2,7 +2,7 @@
 /**获取用户信息 */
 var GetMyInfo = function (that) {
   wx.request({
-    url: 'http://localhost:6001/zhixing/user/queryUserInfo',
+    url: 'http://192.168.43.232:6001/zhixing/user/queryUserInfo',
     method: 'POST',
     header: {
       'content-type': 'application/json;charset=UTF-8'

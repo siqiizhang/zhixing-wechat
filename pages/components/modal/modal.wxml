@@ -2,7 +2,7 @@
 <view hidden="{{modalHidden}}" class="modalClass">  
   <view class="mask_layer" bindtap="modal_click_Hidden" />  
   <view class="modal_box">  
-    <view class="title" bindtap="groupClick">提示</view>  
+    <view class="title" bindtap="groupClick">课程详情</view>  
     <view class="content">  
       <view class="formBodyClass">
     <view class="courseName">课程名称：</view>
@@ -38,8 +38,7 @@
     </view>
     </view>  
     <view class="btn">  
-      <view bindtap="modal_click_Hidden" class="cancel">取消</view>  
-      <view bindtap="Sure" class="Sure">确定</view>  
+      <view bindtap="modal_click_Hidden" class="cancel">关闭</view>  
     </view>  
   </view>  
 </view>

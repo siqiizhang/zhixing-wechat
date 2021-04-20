@@ -24,11 +24,13 @@ Component({
     // 注册事件
     myTabbarEvent: function (e) {
       var index = parseInt(e.currentTarget.dataset.index)
-      // console.log(index)
       this.setData({ defaultShowIndex: index })
       // 注册点击事件传给父组件
       var fatherData = { showIndex: index }
       this.triggerEvent('myTabbarEvent', { activeIndex: fatherData })
+      wx.navigateTo({
+        url: e.currentTarget.dataset.url
+  　　})
     }
   }
 })

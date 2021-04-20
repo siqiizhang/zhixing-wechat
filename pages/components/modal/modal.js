@@ -14,7 +14,6 @@ Component({
    * 组件的初始数据
    */
   data: {
-    text:"text",//这是组件内部数据
   },
 
   /**
@@ -38,7 +37,7 @@ Component({
       // 使用 triggerEvent 方法触发自定义组件事件，指定事件名、detail对象和事件选项
       this.triggerEvent('okEvent', {courseInfoDetail})
       this.setData({
-        
+        courseInfoDetail : ''
       })
       }
   }

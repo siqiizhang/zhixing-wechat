@@ -2,7 +2,7 @@
 var weeksArray = [];
 var GetCourseInfo = function (that) {
     wx.request({
-      url: 'http://localhost:6001/zhixing/CourseInfoController/queryCourseInfo',
+      url: 'http://192.168.43.232:6001/zhixing/CourseInfoController/queryCourseInfo',
       method: 'POST',
       header: {
         'content-type': 'application/json;charset=UTF-8'
@@ -36,7 +36,7 @@ Page({
       sch_listData: [],
       dateArray: [],
       courseInfoDetail:{},
-      is_modal_Hidden : false
+      is_modal_Hidden : true
     },
 
     /**
@@ -117,37 +117,55 @@ Page({
     this.setData({show:false})
   },
   /**
+   * 点击请假，显示请假信息，弹出确认框确认请假
+   */
+  clickLeave: function(e) {
+    var taht = this;
+    wx.showModal({
+      title: '提示',
+      content: '确认要请假?',
+      success: function (res) {
+        if (res.confirm) {
+          console.log('用户点击确定')
+          wx.request({
+            url: 'http://192.168.43.232:6001/zhixing/CourseInfoController/leaveCourse',
+            method: 'POST',
+            header: {
+              'content-type': 'application/json;charset=UTF-8'
+            },
+            data: {
+              courseId : e.currentTarget.dataset.courseId,
+              courseName : e.currentTarget.dataset.courseName,
+              timePeriod : e.currentTarget.dataset.timePeriod,
+              dayOfWeek : e.currentTarget.dataset.dayOfWeek,
+            },
+            success: function (res) {
+              wx.showToast({
+                title: res.data.msg
+              });
+            },
+            fail: function (e) {
+              
+            }
+          })
+        }else if(res.cancel){
+          console.log('用户点击取消')
+        }
+      }
+    })
+  },
+  /**
    * 点击课程，展示课程详情
    */
   clickCourse: function (e) {
     var that=this;
-    wx.request({
-      url: 'http://localhost:6001/zhixing/CourseInfoController/queryCourseDetail',
-      method: 'POST',
-      header: {
-        'content-type': 'application/json;charset=UTF-8'
-      },
-      data: {
-        aaaa:'1111',
-      },
-      success: function (res) {
-        console.log("选中课程详细信息" + JSON.stringify(res));
-        var courseInfoDetails = res.data.result;
-        that.setData({
-          courseInfoDetail: courseInfoDetails, 
-          is_modal_Hidden: false,
-        });
-      },
-      fail: function (e) {
-        that.setData({
-          is_modal_Hidden: true,
-          loadingHidden: true,
-        })
-      }
-    })
+    var courseInfoDetail = e.currentTarget.dataset;
+    that.setData({
+      courseInfoDetail: courseInfoDetail,
+      is_modal_Hidden: false,
+    });
   },
 })
-
 
 var getSevenDays = function () {
   var daysArray = [];

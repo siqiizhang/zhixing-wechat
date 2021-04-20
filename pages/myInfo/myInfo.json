@@ -1,3 +1,12 @@
 {
-  
+  "usingComponents": {
+    "mp-tabbar": "../components/tabbar/tabbar"
+  },
+  "navigationBarTitleText": "UI组件库",
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#AB956D",
+    "navigationBarTitleText": "Demo",
+    "navigationBarTextStyle": "white"
+  }
 }

@@ -1,0 +1,17 @@
+<!--pages/myInfoCampus/myInfoCampus.wxml-->
+<view class="myInfoCampusClass">
+  <block wx:for="{{campusInfoList}}" wx:key="campusInfoList">
+    <view class="campusDetailClass">
+      <view class="itemClassTop">学生姓名：{{item.studentsName}}</view>
+      <view class="itemClass">校区ID：{{item.campusId}}</view>
+      <view class="itemClass">校区名称：{{item.campusName}}</view>
+      <view class="itemClass">校区联系方式：{{item.campusPhone}}</view>
+      <view class="itemClass">校区标语：{{item.campusSlogan}}</view>
+      <view class="itemClass">校区位置：{{item.campusLocation}}</view>
+      <view class="itemClassBottom">校区简介：{{item.campusIntroduction}}</view>
+    </view>
+    <view class='divider'></view>
+  </block>
+</view>
+
+

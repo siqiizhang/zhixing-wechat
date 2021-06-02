@@ -47,7 +47,7 @@ Page({
       })
     } else {
       wx.request({
-        url: 'http://192.168.43.232:6001/zhixing/weChatLoginController/userLogin',
+        url: 'http://127.0.0.1:6001/zhixing/weChatLoginController/userLogin',
         method: 'post',
         data: {
           username: that.data.username,
@@ -55,10 +55,11 @@ Page({
         },
         success(res) {
           if (res.data.success.valueOf("true")) {
-            var userName = res.data.result.userName;
-            var userPhone = res.data.result.userPhone;
+            var userId = res.data.result.id;
+            var usersAllInfo = res.data.result;
+            app.globalData.userId = res.data.result.id;
             wx.navigateTo({
-              url: '../mainPage/mainPage?userName=' + userName + "&userPhone=" + userPhone,
+              url: '../mainPage/mainPage?userId=' + userId + "&usersAllInfo=" + usersAllInfo,
             })
           } else {
             wx.showToast({

@@ -1,27 +1,31 @@
-// pages/course/course.js
+// pages/classes/classes.js
+const util = require('../../utils/util.js')
 var weeksArray = [];
-var GetCourseInfo = function (that) {
+var GetClassesInfo = function (that) {
     wx.request({
-      url: 'http://192.168.43.232:6001/zhixing/CourseInfoController/queryCourseInfo',
+      url: 'http://127.0.0.1:6001/zhixing/courseInfoController/queryThisWeekCourseInfo',
       method: 'POST',
       header: {
         'content-type': 'application/json;charset=UTF-8'
       },
       data: {
-        aaaa:'1111',
+        userId: that.data.userId,
       },
       success: function (res) {
-        console.log("本周课程信息" + JSON.stringify(res));
-        var sList = res.data.result;
-        var sch_listData = dealData(sList);
-        that.setData({
-          sch_listData: sch_listData, 
-        });
-      },
-      fail: function (e) {
-        that.setData({
-          loadingHidden: true,
-        })
+        if (res.data.success.valueOf("true")) {
+          console.log("本周课程信息" + JSON.stringify(res));
+          var sList = res.data.result;
+          var sch_listData = dealData(sList);
+          that.setData({
+            sch_listData: sch_listData,
+          });
+        } else {
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none',
+            duration: 2000
+          })
+        }
       }
     })
   }
@@ -35,8 +39,9 @@ Page({
       show: false,
       sch_listData: [],
       dateArray: [],
-      courseInfoDetail:{},
-      is_modal_Hidden : true
+      classesInfoDetail:{},
+      userId: '',
+      usersAllInfo: ''
     },
 
     /**
@@ -47,6 +52,8 @@ Page({
       var daysArray = getSevenDays();
       var sch_listData = dealData(scheduleList);
       this.setData({
+        userId: options.userId,
+        usersAllInfo: options.usersAllInfo,
         dateArray: daysArray,
         sch_listData: sch_listData,
       });
@@ -64,7 +71,7 @@ Page({
    */
   onShow: function () {
     var that = this;
-    GetCourseInfo(that);
+    GetClassesInfo(that);
   },
 
   /**
@@ -105,65 +112,26 @@ Page({
     okEvent : function (e) {
       console.log(e)
       this.setData({
-        courseInfoDetail: this.data.courseInfoDetail
+        classesInfoDetail: this.data.classesInfoDetail
       })
     },
   /**点击课程弹出框——取消 */
-  cancelCourseInfo: function(e){
+  cancelClassesInfo: function(e){
     this.setData({show:false})
   },
   /**点击课程弹出框——确定按钮*/
-  confirmCourseInfo: function(e){
+  confirmClassesInfo: function(e){
     this.setData({show:false})
-  },
-  /**
-   * 点击请假，显示请假信息，弹出确认框确认请假
-   */
-  clickLeave: function(e) {
-    var taht = this;
-    wx.showModal({
-      title: '提示',
-      content: '确认要请假?',
-      success: function (res) {
-        if (res.confirm) {
-          console.log('用户点击确定')
-          wx.request({
-            url: 'http://192.168.43.232:6001/zhixing/CourseInfoController/leaveCourse',
-            method: 'POST',
-            header: {
-              'content-type': 'application/json;charset=UTF-8'
-            },
-            data: {
-              courseId : e.currentTarget.dataset.courseId,
-              courseName : e.currentTarget.dataset.courseName,
-              timePeriod : e.currentTarget.dataset.timePeriod,
-              dayOfWeek : e.currentTarget.dataset.dayOfWeek,
-            },
-            success: function (res) {
-              wx.showToast({
-                title: res.data.msg
-              });
-            },
-            fail: function (e) {
-              
-            }
-          })
-        }else if(res.cancel){
-          console.log('用户点击取消')
-        }
-      }
-    })
   },
   /**
    * 点击课程，展示课程详情
    */
-  clickCourse: function (e) {
+  clickClasses: function (e) {
     var that=this;
-    var courseInfoDetail = e.currentTarget.dataset;
-    that.setData({
-      courseInfoDetail: courseInfoDetail,
-      is_modal_Hidden: false,
-    });
+    var classesInfoDetail = JSON.stringify(e.currentTarget.dataset.classesinfo);
+    wx.navigateTo({
+      url: '../classesDetail/classesDetail?classesInfoDetail=' + classesInfoDetail,
+    })
   },
 })
 
@@ -173,42 +141,37 @@ var getSevenDays = function () {
   var weekStr = '';
   var weekNum = '';
 
+  var date = new Date(); //当前日期
+  var dateWeek = new Date().getDay(); //当前为本周的周几
+  var now = new Date();
+  var nowYear = now.getYear(); //当前年 
+  var nowMonth = now.getMonth(); //当前月 
+  var nowDay = now.getDate(); //当前日 
+  var nowDayOfWeek = now.getDay(); //今天是本周的第几天 
+  nowYear += (nowYear < 2000) ? 1900 : 0;
+  var dateStart = formatDate(new Date(nowYear, nowMonth, nowDay - nowDayOfWeek + 1 + 0));//本周开始日期
   for (var i = 0; i < 7; i++) {
-    var date = new Date(); //当前日期
-    var newDate = new Date();
-    newDate.setDate(date.getDate() + i);
-
-    var m = (newDate.getMonth() + 1) < 10 ? "0" + (newDate.getMonth() + 1) : (newDate.getMonth() + 1);
-    var d = newDate.getDate() < 10 ? "0" + newDate.getDate() : newDate.getDate();
-
-    var time = newDate.getFullYear() + "-" + m + "-" + d;
-    var dayStr = m + "/" + d;
-
-    if (getWeekByDay(time) == '周一') {
-      weekNum = 0;
-    } else if (getWeekByDay(time) == '周二') {
-      weekNum = 1;
-    } else if (getWeekByDay(time) == '周三') {
-      weekNum = 2;
-    } else if (getWeekByDay(time) == '周四') {
-      weekNum = 3;
-    } else if (getWeekByDay(time) == '周五') {
-      weekNum = 4;
-    } else if (getWeekByDay(time) == '周六') {
-      weekNum = 5;
-    } else if (getWeekByDay(time) == '周日') {
-      weekNum = 6;
-    }
-    dayDict = { "date_text": dayStr, "weekName": getWeekByDay(time), "weekNum": weekNum };
-
-    console.log("date_text:" + dayStr + "weekName:" + getWeekByDay(time) + "weekNum:" + weekNum)
+    var dayStr = formatDate(new Date(new Date(dateStart).getTime() + i*24 * 60 * 60 * 1000));
+    var dateTextM = new Date(dayStr).getMonth() + 1;
+    var dateTextD = new Date(dayStr).getDate();
+    var dateText = dateTextM + "-" + dateTextD;
+    dayDict = { "date_text": dateText, "weekName": getWeekByDay(dayStr), "weekNum": i };
+    console.log("date_text:" + dateText + "weekName:" + getWeekByDay(dayStr) + "weekNum:" + i)
     daysArray.push(dayDict);
   }
-
   weeksArray = daysArray;
   return daysArray;
 }
-
+var formatDate = function (formatDate){
+  let myyear = formatDate.getFullYear();
+  let mymonth = formatDate.getMonth() + 1;
+  let myweekday = formatDate.getDate();
+  return [myyear, mymonth, myweekday].map(formatNumber).join('-');
+}
+var formatNumber = function (n){
+  n = n.toString()
+  return n[1] ? n : '0' + n
+}
 var getWeekByDay = function (dayValue) {
   var day = new Date(Date.parse(dayValue.replace(/-/g, '/'))); //将日期值格式化  
   var today = new Array("周日", "周一", "周二", "周三", "周四", "周五", "周六"); //创建星期数组  

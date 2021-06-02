@@ -3,41 +3,49 @@
 const app = getApp()
 var GetTodayClassInfo = function (that) {
   wx.request({
-    url: 'http://192.168.43.232:6001/zhixing/CourseInfoController/queryTodayClassInfo',
+    url: 'http://127.0.0.1:6001/zhixing/courseInfoController/queryTodayClassInfo',
     method: 'POST',
     header: {
       'content-type': 'application/json;charset=UTF-8'
     },
     data: {
-      aaaa:'1111',
+      userId: that.data.userId,
     },
     success: function (res) {
-      console.log("今日课程信息" + JSON.stringify(res));
-      that.setData({
-        todayClassArray: res.data.result,
-      });
+      if (res.data.success.valueOf("true")) {
+        var todayClassArray = res.data.result;
+        console.log("今日课程信息" + JSON.stringify(res));
+        that.setData({
+          todayClassArray: todayClassArray,
+        });
+      } else {
+        wx.showToast({
+          title: res.data.msg,
+          icon: 'none',
+          duration: 2000
+        })
+      }
+      
     },
-    fail: function (e) {
-      that.setData({
-      })
-    }
   })
 }
 Page({
   data: {
     todayClassArray: [],
-    userName: '',
-    userPhone: ''
+    userId: '',
+    usersAllInfo: ''
   },
       /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-      userName = options.userName;
-      userPhone = options.userPhone;
+      var userId = app.globalData.userId;
+      var usersAllInfo = options.usersAllInfo;
       this.setData({
-        todayClassArray: todayClassArray,
+          userId: userId,
+          usersAllInfo : usersAllInfo,
         });
+      console.log("赋值结束，查看结果");
     },
     /**
  * 生命周期函数--监听页面初次渲染完成
@@ -60,11 +68,17 @@ onShow: function () {
   onHide: function () {
 
   },
+  /**点击今日上课触发该事件 */
+  showClassesInfo : function(e){
+    let index = e.currentTarget.dataset.index;
+    var that = this;
+    var classesInfo = that.data.todayClassArray[index];
+  },
   /**本周课程点击事件 */
-  weekCourseBind: function () {
+  weekClasseseBind: function () {
     var that = this;
     wx.navigateTo({
-      url: '../course/course?userName=' + that.data.userName + "&userPhone=" + that.data.userPhone,
+      url: '../classes/classes?userId=' + that.data.userId + "&usersAllInfo=" + that.data.usersAllInfo,
     })
   },
 });

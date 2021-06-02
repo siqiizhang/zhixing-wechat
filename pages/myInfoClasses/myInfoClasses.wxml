@@ -1,0 +1,18 @@
+<!--pages/myInfoClasses/myInfoClasses.wxml-->
+<view class="myInfoClassesClass">
+  <block wx:for="{{userClassesInfoList}}" wx:key="userClassesInfoList">
+    <view class="userClassesDetailClass">
+      <view class="itemClassTop">班级名称：{{item.classesName}}</view>
+      <view class="itemClass">课程名称：{{item.courseName}}</view>
+      <view class="itemClass">班主任名称：{{item.headTeacherName}}</view>
+      <view class="itemClass">校区名称：{{item.campusName}}</view>
+      <view class="itemClass">教室名称：{{item.classroomsName}}</view>
+      <view class="itemClass">上课日期：{{item.classesDate}}</view>
+      <view class="itemClass">上课时间：{{item.classesTime}}</view>
+      <view class="itemClassBottom">课程时长：{{item.classHour}}</view>
+    </view>
+    <view class='divider'></view>
+  </block>
+</view>
+
+

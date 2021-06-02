@@ -1,7 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "modal" : "../components/modal/modal"
-  },
-  "navigationBarTitleText": "课表"
-}

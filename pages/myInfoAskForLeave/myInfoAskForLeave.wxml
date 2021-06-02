@@ -1,0 +1,19 @@
+<!--pages/myInfoAskForLeave/myInfoAskForLeave.wxml-->
+<view class="askForLeaveInfoClass">
+  <block wx:for="{{askForLeaveInfoList}}" wx:key="askForLeaveInfoList">
+    <view class="askForLeaveDetailClass" style="color:{{item.askForLeaveStatusColor}}">
+      <view class="itemClassTop">学生姓名：{{item.studentName}}</view>
+      <view class="itemIdClass">班主任ID：{{item.headTeacherId}}</view>
+      <view class="itemClass">班主任姓名：{{item.headTeacherName}}</view>
+      <view class="itemIdClass">班级ID：{{item.classesId}}</view>
+      <view class="itemClass">班级名称：{{item.classesName}}</view>
+      <view class="itemClass">上课日期：{{item.classesDate}}</view>
+      <view class="itemClass">上课时间：{{item.classesTime}}</view>
+      <view class="itemClass">{{item.askForLeaveStatus}}</view>
+      <view class="itemClassBottom">{{item.askForLeaveRemark}}</view>
+    </view>
+    <view class='divider'></view>
+  </block>
+</view>
+
+

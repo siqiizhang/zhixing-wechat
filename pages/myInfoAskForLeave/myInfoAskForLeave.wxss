@@ -1,0 +1,35 @@
+/* pages/myInfoAskForLeave/myInfoAskForLeave.wxss */
+.itemIdClass{
+  display: none;
+}
+.itemClassBottom{
+  text-align: left;
+  margin-left: 30px;
+  margin-bottom: -50px;
+}
+.itemClassTop{
+  text-align: left;
+  margin-left: 30px;
+}
+.itemClass{
+  text-align: left;
+  margin-left: 30px;
+  margin-bottom: -120px;
+}
+.askForLeaveDetailClass{
+  border: 1px solid;
+  border-width: 3rpx;
+  border-color: greenyellow;
+  border-radius: 5px;
+  margin: 20px;
+  box-shadow: 1px 2px 3px 4px #ccc;
+  flex-direction:column;
+  display: flex;
+}
+.divider{
+  height: 20rpx;
+}
+.askForLeaveInfoClass{
+  line-height: 350rpx; /** 垂直居中 **/
+  text-align: center; /** 水平居中 **/
+}

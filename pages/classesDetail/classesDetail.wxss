@@ -1,0 +1,46 @@
+/* pages/classesDetail/classesDetail.wxss */
+.askForLeaveButton{
+  align-items: center;
+}
+.classesDetail{
+  width: 80%;
+  margin: 20px;
+  border-top:2px;
+  border-color : #E0E3DA;
+  border-style: solid;
+}
+.askForLeaveReason{
+  margin-left: 20px;
+  margin-top: 10px;
+}
+.askForLeave{
+  margin-left: 20px;
+}
+.headTeacherName{
+  margin-left: 20px;
+} 
+.campusName{
+  margin-left: 20px;
+} 
+.classroomsName{
+  margin-left: 20px;
+} 
+.classesTime{
+  margin-left: 20px;
+} 
+.classHour{
+  margin-left: 20px;
+} 
+.classesName{
+  margin-left: 20px;
+}
+.formBodyClassesName{
+  margin-top: 20px;
+}
+.divLine{
+ background: #E0E3DA;
+ width: 100%;
+ height: 2px;
+ margin-top: 20px;
+ margin-bottom: 20px;
+}

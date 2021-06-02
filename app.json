@@ -1,19 +1,21 @@
 {
-  "description" : "对微信小程序进行全局配置，决定页面文件的路径、窗口表现、设置网络超时时间、设置多tab等",
-  "pages":[
+  "description": "对微信小程序进行全局配置，决定页面文件的路径、窗口表现、设置网络超时时间、设置多tab等",
+  "pages": [
     "pages/index/index",
     "pages/mainPage/mainPage",
+    "pages/classes/classes",
+    "pages/classesDetail/classesDetail",
     "pages/myInfo/myInfo",
-    "pages/course/course",
-    "pages/components/modal/modal",
+    "pages/myInfoCampus/myInfoCampus",
+    "pages/myInfoAskForLeave/myInfoAskForLeave",
+    "pages/myInfoClasses/myInfoClasses",
     "pages/logs/logs"
-    
   ],
-  "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Weixin",
-    "navigationBarTextStyle":"black"
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#2CC2C3",
+    "navigationBarTitleText": "智行",
+    "navigationBarTextStyle": "white"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"

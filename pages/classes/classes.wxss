@@ -1,4 +1,4 @@
-/* pages/course/course.wxss */
+/* pages/classes/classes.wxss */
 .leaveClassLast{
   width: 100%;
   align-items: center;
@@ -22,7 +22,7 @@
 .formBodyClass{
   display:flex ;
 }
-.courseDetailClass{
+.classesDetailClass{
   background-color: white;
   margin:0px auto;
   width: 100%;

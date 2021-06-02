@@ -1,11 +1,30 @@
-.container{
-  background-color: seagreen;
-  height: 100%;
+/* 间隔 */
+.divider{
+  height: 25rpx;
 }
-.userinfo {
-  display: flex;
-  flex-direction: column;
+.arrow{
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid #999;
+  border-right: 2px solid #999;
+  position: absolute;
+  right: 20rpx;
+  transform: rotate(45deg);
+  margin-top:10rpx;
   align-items: center;
+}
+.user_base_info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width:100%;
+  justify-content: center;
+  font-size:30rpx;
+  margin:80rpx 0rpx;
+}
+.user_info{
+    line-height: 48rpx;
+    margin-left: 50rpx;
 }
 .account-bg {
   width: 100%;
@@ -16,9 +35,6 @@
   height: 108rpx;
   margin: 20rpx;
   border-radius: 50%;
-}
-.userinfo-nickname {
-  color: #fff;
 }
 /* 订单 */
 .order {
@@ -76,6 +92,7 @@
   margin-top: 50px;
 }
 .list-item {
+  background-color: ghostwhite;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -87,8 +104,7 @@
   margin: 20rpx;
 }
 .item-text {
-  color: white;
-  font-size: 25rpx;
+  font-size: 15px;
   margin-left: 25rpx;
 }
 .person-line {

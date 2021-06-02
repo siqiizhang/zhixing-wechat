@@ -1,0 +1,47 @@
+<!--pages/classesDetail/classesDetail.wxml-->
+<view class="classesDetail">
+      <view class="formBodyClass">
+        <view class="userId" hidden="true">{{classesInfoDetail.userId}}</view><!--学生ID-->
+      </view>
+      <view class="formBodyClass">
+        <view class="classesId" hidden="true">{{classesInfoDetail.classesId}}</view><!--班级ID-->
+      </view>
+      <view class="formBodyClassesName">
+        <view class="classesName">班级名称：{{classesInfoDetail.classesName}}</view>
+      </view>
+      <view class="divLine"></view>
+      <view class="formBodyClass">
+        <view class="headTeacherId" hidden="true">{{classesInfoDetail.headTeacherId}}</view><!--班主任ID-->
+      </view>
+      <view class="formBodyClass">
+        <view class="headTeacherName">班主任名称：{{classesInfoDetail.headTeacherName}}</view>
+      </view>
+      <view class="divLine"></view>
+      <view class="formBodyClass">
+        <view class="campusId" hidden="true">{{classesInfoDetail.campusId}}</view><!--校区ID-->
+      </view>
+      <view class="formBodyClass">
+        <view class="campusName">校区名称：{{classesInfoDetail.campusName}}</view>
+      </view>
+      <view class="divLine"></view>
+      <view class="formBodyClass">
+        <view class="classroomsId" hidden="true">{{classesInfoDetail.classroomsId}}</view><!--教室ID-->
+      </view>
+      <view class="formBodyClass">
+        <view class="classroomsName">教室名称：{{classesInfoDetail.classroomsName}}</view>
+      </view>
+      <view class="divLine"></view>
+      <view class="formBodyClass">
+        <view class="classesTime">上课时间：{{classesInfoDetail.classesTime}}</view>
+      </view>
+      <view class="divLine"></view>
+      <view class="formBodyClass">
+        <view class="classHour">课程时长：{{classesInfoDetail.classHour}}</view>
+      </view>
+      <view class="divLine"></view>
+      <view class="formBodyClass">
+        <view class="askForLeave">请假原因：</view>
+        <textarea bindinput="bind" class="askForLeaveReason" placeholder="请在此处描述详细请假原因" value="{{askForLeaveReason}}"/>
+      </view>
+    </view>
+    <button type="primary" plain="true" class="askForLeaveButton" bindtap="askForLeave">请假</button>

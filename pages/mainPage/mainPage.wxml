@@ -11,7 +11,15 @@
         <view bindsubmit="todaySubmit" class="todayClassCss">
             <block wx:for="{{todayClassArray}}" wx:key="todayClassArray">
                 <view class="classroomsNameView" wx:key="index" data-index="{{index}}" bindtap="showClassesInfo">
-                    <view class="indexClass">{{item.classroomsName}}</view>
+                    <view class="classesNameAndSignIn">
+                      <view class="indexClass">{{item.classroomsName}}</view>
+                      <button class="classesSignInClass" bindtap="classesSignIn"
+                      data-studentId = "{{item.userId}}"
+                      data-classesId = "{{item.classesId}}"
+                      data-timeTablesId = "{{item.timeTablesId}}"
+                      data-classesDate = "{{item.classesDate}}"
+                      data-classesTime = "{{item.classesTime}}">{{classesSignIn}}</button>
+                    </view>
                     <view class="indexClass">{{item.classesTime}}</view>
                     <view class="indexClass">{{item.classHour}}</view>
                 </view>

@@ -1,3 +1,13 @@
+ .classesSignInClass{
+  width: 85px;
+  height: 10px;
+  margin-right: 2px;
+  color: red;
+  background-color: white;
+ }
+.classesNameAndSignIn{
+  display: flex;
+}
 .indexClass{
   margin: 10px;
 }

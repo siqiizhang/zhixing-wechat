@@ -18,7 +18,7 @@
                       data-classesId = "{{item.classesId}}"
                       data-timeTablesId = "{{item.timeTablesId}}"
                       data-classesDate = "{{item.classesDate}}"
-                      data-classesTime = "{{item.classesTime}}">{{classesSignIn}}</button>
+                      data-classesTime = "{{item.classesTime}}">{{item.classesSignIn}}</button>
                     </view>
                     <view class="indexClass">{{item.classesTime}}</view>
                     <view class="indexClass">{{item.classHour}}</view>

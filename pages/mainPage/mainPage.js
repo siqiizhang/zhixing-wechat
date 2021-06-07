@@ -15,9 +15,8 @@ var GetTodayClassInfo = function (that) {
       if (res.data.success.valueOf("true")) {
         var todayClassArray = res.data.result;
         console.log("今日课程信息" + JSON.stringify(res));
-        this.setData({
+        that.setData({
           todayClassArray: todayClassArray,
-          classesSignIn: todayClassArray.classesSignIn,
         });
       } else {
         wx.showToast({
@@ -26,16 +25,14 @@ var GetTodayClassInfo = function (that) {
           duration: 2000
         })
       }
-      
     },
   })
 }
 Page({
   data: {
-    todayClassArray: [{ "timeTablesId": "1", "campusName": "校区一", "campusId": "1", "classesDate": "2021-06-03", "headTeacherName": "教师一", "userName": "", "userId": "1", "classesName": "班级一", "classesId": "1", "courseName": "", "totalClassHour": "120", "dayOfWeek": "127", "startClassesTime": "00", "headTeacherId": "1", "classroomsName": "教室一", "classesTime": "00:00:00-12:10:20", "endClassesTime": "", "timePeriod": "", "classHour": "40分钟", "classroomsId": "1", "courseId": "", "classesSignIn":"签到"}],
+    todayClassArray: [],
     userId: '',
-    usersAllInfo: '',
-    classesSignIn: '签到'
+    usersAllInfo: ''
   },
       /**
      * 生命周期函数--监听页面加载
@@ -107,9 +104,7 @@ onShow: function () {
             icon: 'none',
             duration: 2000
           });
-          that.setData({
-            classesSignIn: "已签到",
-          });
+          GetTodayClassInfo(that);
         } else {
           wx.showToast({
             title: res.data.msg,
